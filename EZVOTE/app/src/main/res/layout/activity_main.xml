@@ -113,18 +113,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_percent="0.8"/>
-
-    <TextView
-        android:id="@+id/hello"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="hello"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:textColor="@color/jingga"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
     
     <RelativeLayout
         android:id="@+id/Progress_bar_layout"
@@ -142,6 +130,7 @@
         tools:visibility="visible">
 
         <ProgressBar
+            android:id="@+id/loading"
             android:layout_width="30dp"
             android:layout_height="30dp"/>
     </RelativeLayout>

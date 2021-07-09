@@ -35,8 +35,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    TextView hello,have_account;
+public class MainActivity extends AppCompatActivity {
+    TextView have_account;
     EditText id,name,course;
     Button register;
     ProgressBar progressBar;
@@ -50,8 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         name = (EditText) findViewById(R.id.student_name);
         course = (EditText) findViewById(R.id.student_course);
         register = (Button) findViewById(R.id.register_button);
-//        have_account = (TextView) findViewById(R.id.Already_have_account);
-        hello = (TextView) findViewById(R.id.hello);
+        have_account = (TextView) findViewById(R.id.Already_have_account);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,20 +59,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-//        have_account.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                GoToLoginView();
-//            }
-//        });
+        have_account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GoToLoginView();
+            }
+        });
     }
 
-//    public void GoToLoginView(){
-//        Intent intent = new Intent(this,login.class);
-//        startActivity(intent);
-//    }
+    public void GoToLoginView(){
+        Intent intent = new Intent(this,login.class);
+        startActivity(intent);
+    }
 
     private void registerUser(){
+
         String student_id = id.getText().toString().trim();
         String student_name = name.getText().toString().trim();
         String student_course = course.getText().toString().trim();
@@ -81,22 +81,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Constant.URL_REGISTER, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(),"OK",Toast.LENGTH_SHORT).show();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
 
                     Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
+
                     e.printStackTrace();
                 }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
             }
-        },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }){
+        }){
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -111,9 +111,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         requestQueue.add(stringRequest);
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view == register)
-            registerUser();
-    }
+//    @Override
+//    public void onClick(View view) {
+//        if (view == register)
+//            registerUser();
+//        if(view == have_account)
+//        startActivity(new Intent(this,login.class));
+//    }
 }
