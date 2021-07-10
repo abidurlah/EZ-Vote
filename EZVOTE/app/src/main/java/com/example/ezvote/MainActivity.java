@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     TextView TextViewhaveAccount;
-    EditText EditTextid,EditTextname,EditTextcourse;
+    EditText EditTextid,EditTextname,EditTextcourse,EditTextPassword;
     Button Buttonregister;
     ProgressBar progressBar;
 
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         EditTextid = (EditText) findViewById(R.id.student_id);
         EditTextname = (EditText) findViewById(R.id.student_name);
         EditTextcourse = (EditText) findViewById(R.id.student_course);
+        EditTextPassword = (EditText) findViewById(R.id.password);
 
         TextViewhaveAccount = (TextView) findViewById(R.id.Already_have_account);
 
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void registerUser() {
         final String student_id = EditTextid.getText().toString().trim();
+        final String password = EditTextPassword.getText().toString().trim();
         final String student_name = EditTextname.getText().toString().trim();
         final String student_course = EditTextcourse.getText().toString().trim();
 
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 params.put("student_id", student_id);
                 params.put("student_name", student_name);
                 params.put("student_course", student_course);
+                params.put("password",password);
                 return params;
             }
         };

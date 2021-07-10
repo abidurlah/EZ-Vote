@@ -25,7 +25,7 @@ import java.util.Map;
 public class login extends AppCompatActivity implements View.OnClickListener {
 
     Button login_button,register_button;
-    EditText student_id_login, student_course_login;
+    EditText student_id_login, password_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         register_button = (Button) findViewById(R.id.register_btn_login);
         login_button = (Button) findViewById(R.id.Login_btn);
         student_id_login = (EditText) findViewById(R.id.student_id_login);
-        student_course_login = (EditText) findViewById(R.id.student_course_login);
+        password_login = (EditText) findViewById(R.id.password_login);
 
         login_button.setOnClickListener(this);
         register_button.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +48,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
     private void userlogin(){
         final String student_id = student_id_login.getText().toString().trim();
-        final String student_course = student_course_login.getText().toString().trim();
+        final String password = password_login.getText().toString().trim();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Constant.URL_LOGIN, new Response.Listener<String>() {
             @Override
@@ -57,7 +57,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                     JSONObject obj = new JSONObject(response);
                     if (!obj.getBoolean("error")) {
                         SharedPrefManager.getInstance(getApplication()).userLogin(obj.getInt("id"),
-                                obj.getString("student_id"),obj.getString("student_course"));
+                                obj.getString("student_id"),obj.getString("password"));
 //                        Toast.makeText(getApplicationContext(),"Login Successfully",Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(),ScanButton.class));
                     }else {
@@ -82,7 +82,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
                 params.put("student_id",student_id);
-                params.put("student_course",student_course);
+                params.put("password",password);
                 return params;
             }
         };

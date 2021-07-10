@@ -38,13 +38,13 @@
         app:layout_constraintWidth_percent="0.8"/>
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/student_course_login"
+        android:id="@+id/password_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_bg"
-        android:hint="Student Course"
+        android:hint="Password"
         android:importantForAutofill="no"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:paddingStart="20dp"
         android:paddingTop="10dp"
         android:paddingEnd="20dp"
@@ -71,7 +71,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/student_course_login"
+        app:layout_constraintTop_toBottomOf="@id/password_login"
         app:layout_constraintWidth_percent="0.8"/>
 
     <Button
