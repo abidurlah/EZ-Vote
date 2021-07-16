@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -30,6 +31,8 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
 
         register_button = (Button) findViewById(R.id.register_btn_login);
@@ -56,10 +59,9 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                 try {
                     JSONObject obj = new JSONObject(response);
                     if (!obj.getBoolean("error")) {
-                        SharedPrefManager.getInstance(getApplication()).userLogin(obj.getInt("id"),
-                                obj.getString("student_id"),obj.getString("password"));
-//                        Toast.makeText(getApplicationContext(),"Login Successfully",Toast.LENGTH_SHORT).show();
+                        SharedPrefManager.getInstance(getApplication()).userLogin(obj.getInt("id"), obj.getString("student_id"),obj.getString("password"));
                         startActivity(new Intent(getApplicationContext(),ScanButton.class));
+
                     }else {
                         Toast.makeText(getApplicationContext(),obj.getString("message"),Toast.LENGTH_SHORT).show();
                     }

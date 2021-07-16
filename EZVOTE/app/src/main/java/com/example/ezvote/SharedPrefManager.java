@@ -12,6 +12,7 @@ public class SharedPrefManager {
     private static final String KEY_STUDENTID = "student_id";
     private static final String KEY_STUDENTCOURSE = "student_course";
     private static final String KEY_STUDENT_ID = "id";
+    private static final String KEY_STUDENT_NAME = "student_name";
 
     private SharedPrefManager(Context context) {
         mCtx = context;
@@ -23,6 +24,7 @@ public class SharedPrefManager {
         }
         return mInstance;
     }
+    //    public boolean userLogin(int id, String student_id, String student_course) {
     public boolean userLogin(int id, String student_id, String student_course) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -47,5 +49,18 @@ public class SharedPrefManager {
         editor.clear();
         editor.apply();
         return true;
+    }
+
+    public String StudentID() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_STUDENTID,null);
+    }
+    public String StudentName() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_STUDENT_NAME,null);
+    }
+    public String StudentCourse() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_STUDENTCOURSE,null);
     }
 }
